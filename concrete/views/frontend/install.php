@@ -382,7 +382,7 @@ if ($install_config) {
                                 <div class="form-group">
                                     <label for="uName"
                                            class="control-label form-label"><?= t('Administrator Username') ?></label>
-                                    <?= $form->text('uName', '', ['required' => 'required', 'autocomplete' => 'username']) ?>
+                                    <?= $form->text('uName', USER_SUPER, ['required' => 'required', 'autocomplete' => 'username']) ?>
                                 </div>
                             </div>
                             <div class="col-md-6">

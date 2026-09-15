@@ -61,7 +61,7 @@ class InstallerOptions
      *
      * @var string
      */
-    protected $userName = '';
+    protected $userName = USER_SUPER;
 
     /**
      * The admin password hash.
@@ -466,7 +466,6 @@ class InstallerOptions
         $siteInstallUser = @$this->filesystem->getRequire(DIR_CONFIG_SITE . '/site_install_user.php');
         if (is_array($siteInstallUser)) {
             $siteInstallUser += [
-                'userName' => USER_SUPER,
                 'startingPointHandle' => '',
                 'uiLocaleId' => '',
                 'serverTimeZone' => '',
@@ -495,7 +494,7 @@ class InstallerOptions
             ->setPrivacyPolicyAccepted($siteInstallUser['privacyPolicy'])
             ->setConfiguration($siteInstall)
             ->setUserEmail($siteInstallUser['userEmail'])
-            ->setUserName($siteInstallUser['userName'])
+            ->setUserName($siteInstallUser['userName'] ?? $this->getUserName())
             ->setUserPasswordHash($siteInstallUser['userPasswordHash'])
             ->setStartingPointHandle($siteInstallUser['startingPointHandle'])
             ->setSiteName($siteInstallUser['siteName'])
