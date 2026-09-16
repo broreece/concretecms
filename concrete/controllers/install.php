@@ -12,7 +12,6 @@ use Concrete\Core\Install\Installer;
 use Concrete\Core\Install\InstallerOptions;
 use Concrete\Core\Install\PreconditionResult;
 use Concrete\Core\Install\PreconditionService;
-use Concrete\Core\Install\UsernameValidator;
 use Concrete\Core\Install\WebPreconditionInterface;
 use Concrete\Core\Localization\Localization;
 use Concrete\Core\Localization\Service\TranslationsInstaller;
@@ -279,7 +278,7 @@ class Install extends Controller
             $password = $post->get('uPassword');
             $passwordConfirm = $post->get('uPasswordConfirm');
 
-            $this->app->make(UsernameValidator::class)->isValid($post->get('uName'), $error);
+            $this->app->make('validator/user/name')->isValid((string) $post->get('uName'), $error);
             $this->app->make('validator/password')->isValid($password, $error);
 
             if ($password) {

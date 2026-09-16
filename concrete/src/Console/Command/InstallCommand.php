@@ -7,7 +7,6 @@ use Concrete\Core\Console\Command;
 use Concrete\Core\Encryption\PasswordHasher;
 use Concrete\Core\Install\ConnectionOptionsPreconditionInterface;
 use Concrete\Core\Install\Installer;
-use Concrete\Core\Install\UsernameValidator;
 use Concrete\Core\Install\PreconditionResult;
 use Concrete\Core\Install\PreconditionService;
 use Concrete\Core\Localization\Localization;
@@ -535,8 +534,8 @@ EOT
             ['admin-username', USER_SUPER],
             function (InputInterface $input, OutputInterface $output) {
                 $error = new \ArrayObject();
-                Application::getFacadeApplication()->make(UsernameValidator::class)->isValid(
-                    $input->getOption('admin-username'),
+                Application::getFacadeApplication()->make('validator/user/name')->isValid(
+                    (string) $input->getOption('admin-username'),
                     $error
                 );
 
